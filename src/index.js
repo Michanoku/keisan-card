@@ -149,12 +149,6 @@ function flipCard() {
   }
 }
 
-window.addEventListener('keydown', (event) => {
-  if (event.code === 'Space') {
-    flipCard();
-  }
-});
-
 cardContainer.addEventListener('pointerdown', () => {
   flipCard();
 });
