@@ -49,6 +49,7 @@ function shuffle(array) {
 
 function startSession(operation) {
   document.documentElement.className = operation;
+
   calculations = new Array();
   let starti = 9;
   let startj = 9;
@@ -86,7 +87,10 @@ function startSession(operation) {
   shuffle(calculations);
   front.textContent = calculations[0].calculation;
   back.textContent = calculations[0].answer;
+  flip.style.visibility = 'hidden';
+  flip.classList.remove('flip');
   cardFace.style.visibility = 'visible';
+  flipped = false;
   switch (operation) { 
     case 'tashi-lower': first.textContent = '+'; break;
     case 'tashi-upper': first.textContent = '+'; break;
