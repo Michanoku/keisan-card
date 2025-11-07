@@ -2,20 +2,36 @@
   font-size: 16px;
   font-family: Arial, Helvetica, sans-serif;
   --blue: #61D1FD;
-  --blue-light: #AEE8FE;
   --green: #57A773;
-  --green-light: #87C09B;
   --red: #EA3546;
-  --red-light: #EF6B79;
   --orange: #FFA62B;
-  --orange-light: #FFC370;
 }
 
+:root.tashi-upper, :root.tashi-lower {
+  --accent: #61D1FD;
+  --muted: #AEE8FE;
+}
+
+:root.hiki {
+  --accent: #57A773;
+  --muted: #87C09B;
+}
+
+:root.kake {
+  --accent: #EA3546;
+  --muted: #EF6B79;
+}
+
+:root.wari {
+  --accent: #FFA62B;
+  --muted: #FFC370;
+}
 
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  user-select: none;
 }
 
 body {
@@ -35,7 +51,7 @@ input, button {
   display: grid;
   width: 100vw;
   height: 100dvh;
-  grid-template-rows: 1fr 5rem;
+  grid-template-rows: 1fr 6rem;
   grid-template-areas: 'card' 'buttons';
   background-color: #C4AED6;
 }
@@ -43,6 +59,7 @@ input, button {
 #card-container {
   grid-area: card;
   display: flex;
+  position: relative;
   justify-content: center;
   align-items: center;
   font-size: 120px;
@@ -53,6 +70,9 @@ input, button {
 
 #card {
   background-color: transparent;
+  position: relative;
+  transform-style: preserve-3d;
+  isolation: isolate;
   width: 90vw; 
   aspect-ratio: 20 / 9; 
   perspective: 1000px; 
@@ -69,11 +89,11 @@ input, button {
   width: 100%;
   height: 100%;
   text-align: center;
-  transition: transform 0.8s;
+  transition: transform 0.5s  ;
   transform-style: preserve-3d;
 }
 
-#front, #back {
+#first, #front, #back {
   z-index: 1;
   border: 10px solid #f5f5f5;
   border-radius: 5px;
@@ -81,14 +101,44 @@ input, button {
   display: flex;
   justify-content: center;
   align-items: center;
+  text-wrap: nowrap;
   width: 100%;
   height: 100%;
   -webkit-backface-visibility: hidden; /* Safari */
   backface-visibility: hidden;
 }
 
+#ring-container {
+  z-index: 10;
+  position: absolute;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+}
+
+#ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+  border: 10px solid black;
+  border-radius: 50%;
+  background: transparent;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
+
 #front {
-  background-color: var(--blue-light);
+  background-color: var(--muted);
+}
+
+#first {
+  transform: rotate(180deg);
+  transform-origin: left top;
+  background-color: var(--accent);
 }
 
 #card.flip #card-face {
@@ -96,21 +146,74 @@ input, button {
 }
 
 #back {
-  background-color: var(--blue);
+  background-color: var(--accent);
   transform: rotateX(180deg);
 }
 
 #buttons {
   grid-area: buttons;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: top;
+  gap: 0.5rem;
 }
 
 #flip {
-  display: none;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  visibility: hidden;
   z-index: 3;
-  background-color: var(--blue);
+  background-color: var(--accent);
   border: 10px solid #f5f5f5;
+  text-wrap: nowrap;
   border-radius: 5px;
   position: absolute;
   width: 100%;
   height: 100%;
+  transform: rotateY(0);
+  transform-origin: left top;
+  transition: transform 0.5s ease;
+  backface-visibility: hidden;
+}
+
+#flip.flip {
+  transform: rotate(180deg);
+}
+
+#counter {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 2rem;
+  color: black;
+}
+
+.operation {
+  font-size: 1.25rem;
+  border: 4px solid #f5f5f5;
+  height: 2.5rem;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+}
+
+.operation[data-operation='tashi-lower'], 
+.operation[data-operation='tashi-upper'] {
+  background-color: var(--blue);
+}
+
+.operation[data-operation='hiki'] {
+  background-color: var(--green);
+}
+
+.operation[data-operation='kake'] {
+  background-color: var(--red);
+}
+
+.operation[data-operation='wari'] {
+  background-color: var(--orange);
 }
