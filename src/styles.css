@@ -62,7 +62,7 @@ input, button {
   position: relative;
   justify-content: center;
   align-items: center;
-  font-size: 120px;
+  font-size: 5.625rem;
   font-weight: 700;
   color: black;
   height: 100%;
@@ -82,6 +82,9 @@ input, button {
   #card {
     width: 30vw; 
   }
+  #card-container {
+    font-size: 7.5rem;
+  }
 }
 
 #card-face {
@@ -95,8 +98,8 @@ input, button {
 
 #first, #front, #back {
   z-index: 1;
-  border: 10px solid #f5f5f5;
-  border-radius: 5px;
+  border: 0.625rem solid #f5f5f5;
+  border-radius: 0.375rem;
   position: absolute;
   display: flex;
   justify-content: center;
@@ -123,12 +126,12 @@ input, button {
   top: 0;
   left: 0;
   transform: translate(-50%, -50%);
-  border: 10px solid black;
+  border: 0.625rem solid black;
   border-radius: 50%;
   background: transparent;
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
+  width: 3.125rem;
+  height: 3.125rem;
 }
 
 #front {
@@ -166,9 +169,9 @@ input, button {
   visibility: hidden;
   z-index: 3;
   background-color: var(--accent);
-  border: 10px solid #f5f5f5;
+  border: 0.625rem solid #f5f5f5;
   text-wrap: nowrap;
-  border-radius: 5px;
+  border-radius: 0.375rem;
   position: absolute;
   width: 100%;
   height: 100%;
@@ -192,7 +195,7 @@ input, button {
 
 .operation {
   font-size: 1.25rem;
-  border: 4px solid #f5f5f5;
+  border: 0.25rem solid #f5f5f5;
   height: 2.5rem;
   color: black;
   display: flex;
