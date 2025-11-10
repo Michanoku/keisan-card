@@ -2,33 +2,10 @@ class Keisan {
   constructor(operation) {
     this.calculations = this.#getCalculations(operation);
     this.operation = operation;
-    this.flipped = false;
-    this.isAnimating = false;
-    this.finished = false;
     this.current;
     this.next;
     this.max = this.calculations.length;
     this.count = 1;
-  }
-
-  // Begin animation
-  startAnimating() {
-    this.isAnimating = true;
-  }
-
-  // Stop animation
-  stopAnimating() {
-    this.isAnimating = false;
-  }
-
-  // Flip the card
-  flip() {
-    this.flipped = true;
-  }
-
-  // Unflip the card
-  unflip() {
-    this.flipped = false;
   }
 
   // Add one to the counter
@@ -36,19 +13,13 @@ class Keisan {
     this.count++;
   }
 
-  // Finish this session
-  finish() {
-    this.finished = true;
-  }
-
-  // Set the current card
-  setCurrent() {
+  // Set the current and next cards
+  setCards() {
     this.current = this.calculations.shift();
-  }
-
-  // Set the next card
-  setNext() {
-    this.next = this.calculations[0];
+    if (this.calculations.length > 0) {
+      // Set the next card value
+      this.next = this.calculations[0];
+    }
   }
 
   // Get all calculations for the operation
